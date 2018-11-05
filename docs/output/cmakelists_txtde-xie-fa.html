@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+        <meta charset="utf-8" />
+        <title>CMakeLists_txt的写法</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="blog Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">blog </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/cmake.html">CMake</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/cmakelists_txtde-xie-fa.html" rel="bookmark"
+           title="Permalink to CMakeLists_txt的写法">CMakeLists_txt的写法</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-11-04T23:49:00+08:00">
+                Published: Sun 04 November 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/lizhenghua.html">LiZhenghua</a>
+        </address>
+<p>In <a href="/category/cmake.html">CMake</a>.</p>
+
+</footer><!-- /.post-info -->      <hr>
+<p><a href="https://www.ibm.com/developerworks/cn/linux/l-cn-cmake/">参考资料</a></p>
+<p>直接分析实例:</p>
+<div class="highlight"><pre><span></span> $ tree 
+
+.
+├── main.c
+└── src
+    ├── ...
+    ├── ...
+    └── ...
+</pre></div>
+
+
+<p><code>CMakeLists.txt</code>中的命令不区分大小写.</p>
+<div class="highlight"><pre><span></span><span class="c"># ./CMakeLists.txt</span>
+<span class="err">project(main)</span> <span class="c"># 确定项目名称</span>
+<span class="err">cmake_minimum_required(VERSION</span> <span class="err">3.10)</span> <span class="c"># CMake的最低版本</span>
+<span class="err">add_subdirectory(src)</span> <span class="c"># 声明子目录</span>
+<span class="err">aux_source_directory(.</span> <span class="err">DIR_SRCS)</span> <span class="c"># 将当前目录(.)下的源文件名称赋给变量DIR_SRCS</span>
+<span class="err">add_executable(main</span> <span class="err">${DIR_SRCS})</span> <span class="c"># 将DIR_SRCS中的源文件编译为名为main的可执行文件</span>
+<span class="err">target_link_libraries(main</span> <span class="err">Test)</span> <span class="c"># 指明main需要链接到名为Test的链接库</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c"># ./src/CMakeLists.txt</span>
+<span class="err">aux_source_directory(.</span> <span class="err">DIR_TEST1_SRCS)</span>
+<span class="err">add_library(</span> <span class="err">Test</span> <span class="err">${DIR_TEST1_SRCS})</span> <span class="c">#将./src/目录下的源文件编译为名为TEST的共享库</span>
+</pre></div>
+
+
+<p>然后执行cmake</p>
+<div class="highlight"><pre><span></span>cmake .
+make
+</pre></div>
+
+
+<p>THE END</p>
+<hr>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

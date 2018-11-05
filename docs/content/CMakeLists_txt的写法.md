@@ -1,7 +1,5 @@
 Title: CMakeLists_txt的写法
-
-Date: 2018-11-4 Sun 23:49
-
+Date: 2018-11-4 23:49
 Category: CMake
 
 ---

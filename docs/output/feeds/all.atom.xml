@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2018-11-04T23:49:00+08:00</updated><entry><title>CMakeLists_txt的写法</title><link href="/cmakelists_txtde-xie-fa.html" rel="alternate"></link><published>2018-11-04T23:49:00+08:00</published><updated>2018-11-04T23:49:00+08:00</updated><author><name>LiZhenghua</name></author><id>tag:None,2018-11-04:/cmakelists_txtde-xie-fa.html</id><summary type="html">&lt;hr&gt;
+&lt;p&gt;&lt;a href="https://www.ibm.com/developerworks/cn/linux/l-cn-cmake/"&gt;参考资料&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;直接分析实例:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; $ tree 
+
+.
+├── main.c
+└── src
+    ├── ...
+    ├── ...
+    └── ...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;CMakeLists.txt&lt;/code&gt;中的命令不区分大小写.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;# ./CMakeLists.txt&lt;/span&gt;
+&lt;span class="err"&gt;project(main)&lt;/span&gt; &lt;span class="c"&gt;# 确定项目名称&lt;/span&gt;
+&lt;span class="err"&gt;cmake_minimum_required(VERSION&lt;/span&gt; &lt;span class="err"&gt;3.10)&lt;/span&gt; &lt;span class="c"&gt;# CMake的最低版本&lt;/span&gt;
+&lt;span class="err"&gt;add_subdirectory(src)&lt;/span&gt; &lt;span class="c"&gt;# 声明子目录&lt;/span&gt;
+&lt;span class="err"&gt;aux_source_directory(.&lt;/span&gt; &lt;span class="err"&gt;DIR_SRCS)&lt;/span&gt; &lt;span class="c"&gt;# 将当前目录(.)下的源文件名称赋给变量DIR_SRCS&lt;/span&gt;
+&lt;span class="err"&gt;add_executable(main&lt;/span&gt; &lt;span class="err"&gt;${DIR_SRCS})&lt;/span&gt; &lt;span class="c"&gt;# 将DIR_SRCS中的源文件编译为名为main的可执行文件&lt;/span&gt;
+&lt;span class="err"&gt;target_link_libraries(main&lt;/span&gt; &lt;span class="err"&gt;Test)&lt;/span&gt; &lt;span class="c"&gt;# 指明main需要链接到名为Test的链接库&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;# ./src/CMakeLists.txt&lt;/span&gt;
+&lt;span class="err"&gt;aux_source_directory(.&lt;/span&gt; &lt;span class="err"&gt;DIR_TEST1_SRCS)&lt;/span&gt;
+&lt;span class="err"&gt;add_library(&lt;/span&gt; &lt;span class="err"&gt;Test&lt;/span&gt; &lt;span class="err"&gt;${DIR_TEST1_SRCS})&lt;/span&gt; &lt;span class="c"&gt;#将./src/目录下的源文件编译为名为TEST的共享库&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后执行cmake&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cmake .
+make
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;THE END …&lt;/p&gt;</summary><content type="html">&lt;hr&gt;
+&lt;p&gt;&lt;a href="https://www.ibm.com/developerworks/cn/linux/l-cn-cmake/"&gt;参考资料&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;直接分析实例:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; $ tree 
+
+.
+├── main.c
+└── src
+    ├── ...
+    ├── ...
+    └── ...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;CMakeLists.txt&lt;/code&gt;中的命令不区分大小写.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;# ./CMakeLists.txt&lt;/span&gt;
+&lt;span class="err"&gt;project(main)&lt;/span&gt; &lt;span class="c"&gt;# 确定项目名称&lt;/span&gt;
+&lt;span class="err"&gt;cmake_minimum_required(VERSION&lt;/span&gt; &lt;span class="err"&gt;3.10)&lt;/span&gt; &lt;span class="c"&gt;# CMake的最低版本&lt;/span&gt;
+&lt;span class="err"&gt;add_subdirectory(src)&lt;/span&gt; &lt;span class="c"&gt;# 声明子目录&lt;/span&gt;
+&lt;span class="err"&gt;aux_source_directory(.&lt;/span&gt; &lt;span class="err"&gt;DIR_SRCS)&lt;/span&gt; &lt;span class="c"&gt;# 将当前目录(.)下的源文件名称赋给变量DIR_SRCS&lt;/span&gt;
+&lt;span class="err"&gt;add_executable(main&lt;/span&gt; &lt;span class="err"&gt;${DIR_SRCS})&lt;/span&gt; &lt;span class="c"&gt;# 将DIR_SRCS中的源文件编译为名为main的可执行文件&lt;/span&gt;
+&lt;span class="err"&gt;target_link_libraries(main&lt;/span&gt; &lt;span class="err"&gt;Test)&lt;/span&gt; &lt;span class="c"&gt;# 指明main需要链接到名为Test的链接库&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;# ./src/CMakeLists.txt&lt;/span&gt;
+&lt;span class="err"&gt;aux_source_directory(.&lt;/span&gt; &lt;span class="err"&gt;DIR_TEST1_SRCS)&lt;/span&gt;
+&lt;span class="err"&gt;add_library(&lt;/span&gt; &lt;span class="err"&gt;Test&lt;/span&gt; &lt;span class="err"&gt;${DIR_TEST1_SRCS})&lt;/span&gt; &lt;span class="c"&gt;#将./src/目录下的源文件编译为名为TEST的共享库&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后执行cmake&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cmake .
+make
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;THE END&lt;/p&gt;
+&lt;hr&gt;</content></entry></feed>
